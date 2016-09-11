@@ -29,12 +29,16 @@ Options are specified in the last parameter passed, which should be in hash form
       Set to true to skip any unmergeable elements from source
     :knockout_prefix        DEFAULT: nil
       Set to string value to signify prefix which deletes elements from existing element
+    :overwrite_arrays       DEFAULT: false
+      Set to true if you want to avoid merging arrays
     :sort_merged_arrays     DEFAULT: false
       Set to true to sort all arrays that are merged together
     :unpack_arrays          DEFAULT: nil
       Set to string value to run "Array::join" then "String::split" against all arrays
     :merge_hash_arrays      DEFAULT: false
       Set to true to merge hashes within arrays
+    :extend_existing_arrays DEFAULT: false
+      Set to true to extend existing arrays, instead of overwriting them
     :merge_debug            DEFAULT: false
       Set to true to get console output of merge process for debugging
 
@@ -57,6 +61,15 @@ Additionally, if the knockout_prefix is passed alone as a string, it will cause 
     dest.ko_deep_merge!(source)
     Results: {:x => ""}
 
+**:overwrite_arrays**
+
+The purpose of this is to provide a way to replace Arrays instead of having them merge together.
+
+    source = {:x => ['1', '2']}
+    dest   = {:x => ['3', '4']}
+    dest.deep_merge!(source, {:overwrite_arrays => true})
+    Results: {:x => ['1', '2']}
+
 **:unpack_arrays**
 
 The purpose of this is to permit compound elements to be passed in as strings and to be converted into discrete array elements
@@ -76,6 +89,15 @@ merge hashes within arrays
     dest   = {:x => [{:z => 2}]}
     dest.deep_merge!(source, {:merge_hash_arrays => true})
     Results: {:x => [{:y => 1, :z => 2}]}
+
+**:extend_existing_arrays**
+
+Push src elements to existing arrays, instead of overwriting them.
+
+    source = { "property" => "4" }
+    dest   = { "property" => ["1", "2", "3"] }
+    dest.deep_merge!(source, {:extend_existing_arrays => true})
+    Results: {"property" => ["1", "2", "3", "4"]}
 
 There are many tests for this library - and you can learn more about the features and usages of deep_merge! by just browsing the test examples.
 
@@ -110,4 +132,4 @@ Availablility
 
 `deep_merge` was written by Steve Midgley, and is now maintained by Daniel DeLeo. The official home of `deep_merge` on the internet is now https://github.com/danielsdeleo/deep_merge
 
-Copyright (c) 2008 Steve Midgley, released under the MIT license
+Copyright (c) 2008-2016 Steve Midgley, released under the MIT license
