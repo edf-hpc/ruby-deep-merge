@@ -4,11 +4,11 @@ Source: http://github.com/danielsdeleo/deep_merge
 
 Files: *
 Copyright: (c) 2008 Steve Midgley
-           (c) 2008-2014 Daniel DeLeo <dan@kallistec.com>
+           (c) 2008-2016 Daniel DeLeo <dan@kallistec.com>
 License: MIT
 
 Files: debian/*
-Copyright: 2015 Apollon Oikonomopoulos <apoikos@debian.org>
+Copyright: 2015-2016 Apollon Oikonomopoulos <apoikos@debian.org>
 License: MIT
 Comment: the Debian packaging is licensed under the same terms as the original package.
 
